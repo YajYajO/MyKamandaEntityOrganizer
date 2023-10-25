@@ -3,19 +3,12 @@ import './UserList.css'; // Import a CSS file for styling
 
 function UserList() {
   const [users, setUsers] = useState([]);
-  const example = {
-    businessName: "JJ's Business",
-    field: "Field",
-    address: "Address",
-    SICcode: "SICcode",
-    dataFurnisherCode: "Furnish",
-    creditScore: "Credit Score",
-    domainName: "domain",
-    websitesUsername: "username",
-    webstiesPassword: "pass",
-    licenses: "license",
-    franchises: "Franchise yes",
-  };
+  const example = createBusinessObject("JJ's Business"); // Pass the business name as a parameter
+  const moreBusiness = createBusinessObject("Addatives");
+  const businesses = [];
+  businesses.push(example, moreBusiness);
+
+  
 
   return (
     <div>
@@ -25,17 +18,45 @@ function UserList() {
   );
 }
 
+// Function to create the example business object
+function createBusinessObject(businessName) {
+  return {
+    businessName,
+    field: "null",
+    address: "null",
+    structure: "null",
+    SICcode: "null",
+    dataFurnisherCode: "null",
+    creditScore: "null",
+    domainName: "null",
+    websites: "null",
+    franchises: "null",
+    labels: "null",
+    socialMedia: "null",
+    documents: "null",
+  };
+}
+
 function ObjectTraverser(props) {
   const { data } = props;
 
   return (
-    <div className="object-traverser">
-      {Object.entries(data).map(([key, value]) => (
-        <div key={key} className="object-item">
-          <strong>{key}:</strong> {value}
-        </div>
+    <table className="object-table">
+  <thead>
+    <tr className="object-row">
+      {Object.keys(data).map((key) => (
+        <th key={key} className="object-key">{key}</th>
       ))}
-    </div>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="object-row">
+      {Object.values(data).map((value) => (
+        <td className="object-value" key={value}>{value}</td>
+      ))}
+    </tr>
+  </tbody>
+</table>
   );
 }
 
