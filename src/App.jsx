@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './UserList.css'; // Import a CSS file for styling
+import './index.css';
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -7,16 +8,29 @@ function UserList() {
   const moreBusiness = createBusinessObject("Addatives");
   const businesses = [];
   businesses.push(example, moreBusiness);
+  const numOfIcons = 40;
 
+  const icons = Array.from({ length: numOfIcons }, (_, index) => (
+    <i key={index}></i>
+  ));
+  return(
+
+<body>
+
+  <div class="header">
+    <h1>Mykamanda</h1>
+    <p>Data Traversal</p>
+    <button class="button-1" role="button"><span class="text">Account Details</span></button>
+    <button class="button-2" role="button"><span class="text">View Buisness</span></button>
+  </div>
+  <div class='search'>
+    <input id='form' placeholder='Find A Company'></input>
+    <input type="submit" id="button" value="Search"></input>
+  </div>
+  {icons}
   
-
-  return (
-    <div>
-      <h1>Data Traversal</h1>
-      <ObjectTraverser data={example} />
-    </div>
-  );
-}
+</body>
+  )}
 
 // Function to create the example business object
 function createBusinessObject(businessName) {
@@ -61,6 +75,7 @@ function ObjectTraverser(props) {
 }
 
 export default UserList;
+
 
 
 
